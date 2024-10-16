@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Usuário</title>
+    <link href="./css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Instalar a Extensão Live Server! -->
+    <!-- Depois tem que entrar no localhost/phpmyadmin no navegador -->
+    <!-- Criar o banco de dados "db_back_end" -->
+    <!-- Criar a tabela usuarios com os campos (id, email e senha) -->
+    <form
+      id="form"
+      method="post"
+      action="http://localhost/projeto-fullstack-php/back-end/cadastro.php"
+    >
+      <h1>CADASTRO DE USUÁRIO</h1>
+      <label>email</label>
+      <input type="email" name="email" />
+      <label>senha</label>
+      <input type="password" id="senha" name="senha" />
+      <button type="submit">Cadastrar Usuário</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const password = document.getElementById("senha").value;
+
+          // Expressão regular para validar a senha
+          const regex =
+            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
+          if (regex.test(password)) {
+            alert("Senha válida!");
+            this.submit(); // Submete o formulário se a senha for válida
+          } else {
+            alert(
+              "A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial."
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
+
+
